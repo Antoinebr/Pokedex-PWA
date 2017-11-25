@@ -1,0 +1,7 @@
+php_apache:
+  image: webdevops/php-apache:7.1
+  ports:
+    - 7878:80
+  volumes:
+    - ./dist:/app/
+
