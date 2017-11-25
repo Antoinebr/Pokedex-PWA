@@ -123,10 +123,17 @@ const webpackConfig = merge(baseWebpackConfig, {
       ],
       minify: true,
       stripPrefix: 'dist/',
-      runtimeCaching: [{
-        urlPattern:  new RegExp('^http://localhost:8989/'),
-        handler: "networkFirst"
-      }],
+      runtimeCaching: [
+        {
+          urlPattern:  new RegExp('^https://pokedex.antoinebrossault.com/api/'),
+          handler: "networkFirst"
+        },
+        {
+          urlPattern:  new RegExp('^http://localhost:7878/pokedex-pwa/api/'),
+          handler: "networkFirst"
+        },
+
+      ],
     }),
   ]
 })

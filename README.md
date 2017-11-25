@@ -10,6 +10,35 @@ This project is a fork from [Louisti](https://github.com/Louistiti) [Pokedex](ht
 [pokedex.antoinebrossault.com](https://pokedex.antoinebrossault.com)
 
 
+## caching 
+
+```JavaScript 
+
+   // service worker caching
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'pokedex-pwa',
+      filename: 'service-worker.js',
+      staticFileGlobs: [
+        'dist/**/*.{js,html,css}',
+        'dist/static/img/*/*.png'
+      ],
+      minify: true,
+      stripPrefix: 'dist/',
+      runtimeCaching: [
+        {
+          urlPattern:  new RegExp('^https://pokedex.antoinebrossault.com/api/'),
+          handler: "networkFirst"
+        },
+        {
+          urlPattern:  new RegExp('^http://localhost:7878/pokedex-pwa/api/'),
+          handler: "networkFirst"
+        },
+
+      ],
+    }),
+
+```
+
 ## Build Setup
 
 ``` bash
@@ -27,3 +56,13 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Serve 
+
+ Use docker 
+
+ ```bash
+
+docker-compose up -d 
+
+ ```
