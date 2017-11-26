@@ -1,30 +1,27 @@
 <template>
       <ul id="pokemon-list" >
-          
     
         <li v-for="(pokemon,index) in pokemons" :pokemons="pokemons,index" :key="pokemon.id" class="pokemon" :class=" `for-${index}`">
-            <a href="#">
-                <div class="pokemon-id">
+ 
+            <div class="pokemon-id">
+                <img :src="`static/img/pokemons/${pokemon.id}.png`" v-bind:alt="pokemon.name">
+                #{{ addZero(pokemon.id) }}
+            </div>
 
-                    <img :src="`static/img/pokemons/${pokemon.id}.png`" v-bind:alt="pokemon.name">
-                    #{{ addZero(pokemon.id) }}
-                </div>
-                <div class="pokemon-info">
-                    <div class="pokemon-info-name">  {{pokemon.name}} </div>
-
-                    <div v-for="(type,index) in pokemon.types" :key="type" class="pokemon-info-type" :class="type"></div> 
-
-                </div>
-            </a>
+            <div class="pokemon-info">
+                <div class="pokemon-info-name">  {{pokemon.name}} </div>
+                <div v-for="(type,index) in pokemon.types" :key="type" class="pokemon-info-type" :class="type"></div> 
+            </div>
+            
             
             <button class="is-gotten" :class="{gotten : team.includes(pokemon.id) } " @click.prevent="toggleTeam(pokemon.id,remove)">
                 <i class="pokeball">
                     <i class="pokeball-button"></i>
                 </i>
             </button>
-        </li>
 
-        
+        </li>
+  
      </ul>
 </template>
 
